@@ -4,62 +4,26 @@
     ViewData["Title"] = "Home page";
 }
 
-<!-- Font Awesome for awesome icons. You can redefine icons used in a plugin configuration -->
-<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-
-<!-- CSS -->
-<link rel="stylesheet" href="~/css/medium-editor.min.css">
-<link rel="stylesheet" href="~/css/default.css">
-<link rel="stylesheet" href="~/css/medium-editor-insert-plugin.min.css">
-
-<div> https://github.com/yabwe/medium-editor </div>
-<div> https://github.com/orthes/medium-editor-insert-plugin </div>
-
-<div id="container">
-    <div class="editable" data-placeholder="Type some text">
-
+<form method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <div class="col-md-10">
+            <p>Upload one or more files using this form:</p>
+            <input type="file" name="files" multiple />
+        </div>
     </div>
-</div>
+    <div class="form-group">
+        <div class="col-md-10">
+            <input type="submit" value="Upload" />
+        </div>
+    </div>
+</form>
 
-@section Scripts
+<br/>
+
+@if (Model.ImgUrl.Count > 0)
 {
-
-    <!-- JS -->
-    <script src="~/js/jquery.min.js"></script>
-    <script src="~/js/medium-editor.js"></script>
-    <script src="~/js/handlebars.runtime.min.js"></script>
-    <script src="~/js/jquery-sortable-min.js"></script>
-    <script src="~/js/jquery.ui.widget.js"></script>
-    <script src="~/js/jquery.iframe-transport.js"></script>
-    <script src="~/js/jquery.fileupload.js"></script>
-    <script src="~/js/medium-editor-insert-plugin.min.js"></script>
-
-    <script>
-
-        var editor = new MediumEditor('.editable');
-        $(function() {
-            $('.editable').mediumInsert({
-                editor: editor,
-                addons: {
-                    images: {
-                        preview: true, 
-                        fileUploadOptions : {
-                            url : "/"  ,
-                            type : "POST"
-                        },
-                        uploadCompleted: function($el, data) {
-                           console.log("completed"); 
-                           console.log($el); 
-                           console.log(data); 
-                        }, 
-                        uploadFailed: function(uploadErrors, data) {
-                           console.log("failed"); 
-                           console.log(uploadErrors); 
-                           console.log(data); 
-                        } 
-                    }
-                }
-            });
-        });
-    </script>
+    foreach (var url in Model.ImgUrl)
+    {
+       <img src="@url"/> 
+    } 
 }
