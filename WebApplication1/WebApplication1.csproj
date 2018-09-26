@@ -5,7 +5,16 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.App"/>
+        <PackageReference Include="FirebaseAuthentication.net">
+          <Version>3.0.7</Version>
+        </PackageReference>
+        <PackageReference Include="FirebaseStorage.net">
+          <Version>1.0.2</Version>
+        </PackageReference>
+        <PackageReference Include="Imgur.API">
+          <Version>4.0.1</Version>
+        </PackageReference>
+        <PackageReference Include="Microsoft.AspNetCore.App" />
     </ItemGroup>
 
 </Project>
