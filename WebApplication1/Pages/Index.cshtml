@@ -27,3 +27,37 @@
        <img src="@url"/> 
     } 
 }
+
+<br/>
+<br/>
+<hr /> <hr />
+
+<form method="post" asp-page-handler="Data">
+    
+    <button type="submit">Submit Data</button>
+    
+</form>
+
+@if (Model.FObject != null)
+{
+    <h5>Key - @Model.Key</h5>
+    <h5>Name - @Model.FObject.Name</h5>
+    <h5>Url - @Model.FObject.Url</h5>
+}
+
+<br/>
+<br/>
+<hr /> <hr />
+
+<form method="post" asp-page-handler="DataUpdate">
+    
+    <button type="submit">Update Data</button>
+    
+</form>
+
+@if (Model.FObject != null)
+{
+    <h5>Key - @Model.Key</h5>
+    <h5>Name - @Model.FObject.Name</h5>
+    <h5>Url - @Model.FObject.Url</h5>
+}

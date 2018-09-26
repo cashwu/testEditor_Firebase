@@ -8,6 +8,9 @@
         <PackageReference Include="FirebaseAuthentication.net">
           <Version>3.0.7</Version>
         </PackageReference>
+        <PackageReference Include="FirebaseDatabase.net">
+          <Version>3.3.3</Version>
+        </PackageReference>
         <PackageReference Include="FirebaseStorage.net">
           <Version>1.0.2</Version>
         </PackageReference>
