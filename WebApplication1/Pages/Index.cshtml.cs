@@ -25,19 +25,19 @@ namespace WebApplication1.Pages
 
         public async Task<IActionResult> OnGetAsync()
         {
-            var auth = new FirebaseAuthProvider(new FirebaseConfig("AIzaSyBDbJVPbvfQRe6IbD2K5yHSjr74_YbSJs8"));
-            var a = await auth.SignInWithEmailAndPasswordAsync("cash@cashwu.com", "E0F31815-1D25-4D98-80C4-629332F1B8F6");
-
-            var firebaseClient = new FirebaseClient("https://website-cashwu.firebaseio.com/", new FirebaseOptions
+            var auth = new FirebaseAuthProvider(new FirebaseConfig(""));
+            var a = await auth.SignInWithEmailAndPasswordAsync("cash@cashwu.com", "");
+            
+            var firebaseClient = new FirebaseClient("https://.firebaseio.com/", new FirebaseOptions
             {
                 AuthTokenAsyncFactory = () => Task.FromResult(a.FirebaseToken)
             });
-
+            
             var data = await firebaseClient.Child("data")
                                            .OrderByKey()
                                            .LimitToFirst(1)
                                            .OnceAsync<Data>();
-
+            
             FObject = data.FirstOrDefault()?.Object;
             Key = data.FirstOrDefault()?.Key;
 
@@ -46,10 +46,10 @@ namespace WebApplication1.Pages
 
         public async Task<IActionResult> OnPostDataAsync()
         {
-            var auth = new FirebaseAuthProvider(new FirebaseConfig("AIzaSyBDbJVPbvfQRe6IbD2K5yHSjr74_YbSJs8"));
-            var a = await auth.SignInWithEmailAndPasswordAsync("cash@cashwu.com", "E0F31815-1D25-4D98-80C4-629332F1B8F6");
+            var auth = new FirebaseAuthProvider(new FirebaseConfig(""));
+            var a = await auth.SignInWithEmailAndPasswordAsync("cash@cashwu.com", "");
 
-            var firebaseClient = new FirebaseClient("https://website-cashwu.firebaseio.com/", new FirebaseOptions
+            var firebaseClient = new FirebaseClient("https://.firebaseio.com/", new FirebaseOptions
             {
                 AuthTokenAsyncFactory = () => Task.FromResult(a.FirebaseToken)
             });
@@ -70,10 +70,10 @@ namespace WebApplication1.Pages
         {
             Key = "-LNNfUTWxJF-Iuq8_Iqv";
 
-            var auth = new FirebaseAuthProvider(new FirebaseConfig("AIzaSyBDbJVPbvfQRe6IbD2K5yHSjr74_YbSJs8"));
-            var a = await auth.SignInWithEmailAndPasswordAsync("cash@cashwu.com", "E0F31815-1D25-4D98-80C4-629332F1B8F6");
+            var auth = new FirebaseAuthProvider(new FirebaseConfig(""));
+            var a = await auth.SignInWithEmailAndPasswordAsync("cash@cashwu.com", "");
 
-            var firebaseClient = new FirebaseClient("https://website-cashwu.firebaseio.com/", new FirebaseOptions
+            var firebaseClient = new FirebaseClient("https://.firebaseio.com/", new FirebaseOptions
             {
                 AuthTokenAsyncFactory = () => Task.FromResult(a.FirebaseToken)
             });
@@ -103,9 +103,9 @@ namespace WebApplication1.Pages
                     file.CopyTo(ms);
                     ms.Seek(0, SeekOrigin.Begin);
 
-                    var auth = new FirebaseAuthProvider(new FirebaseConfig("AIzaSyBDbJVPbvfQRe6IbD2K5yHSjr74_YbSJs8"));
-                    var a = await auth.SignInWithEmailAndPasswordAsync("cash@cashwu.com", "E0F31815-1D25-4D98-80C4-629332F1B8F6");
-                    var url = await new FirebaseStorage("website-cashwu.appspot.com", new FirebaseStorageOptions
+                    var auth = new FirebaseAuthProvider(new FirebaseConfig(""));
+                    var a = await auth.SignInWithEmailAndPasswordAsync("cash@cashwu.com", "");
+                    var url = await new FirebaseStorage(".appspot.com", new FirebaseStorageOptions
                                     {
                                         AuthTokenAsyncFactory = () => Task.FromResult(a.FirebaseToken),
                                         ThrowOnCancel = true

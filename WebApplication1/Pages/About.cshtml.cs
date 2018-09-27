@@ -2,17 +2,30 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace WebApplication1.Pages
 {
     public class AboutModel : PageModel
     {
-        public string Message { get; set; }
-
-        public void OnGet()
+        public string MdText { get; set; }
+        
+        public IActionResult OnPost(Dto dto)
         {
-            Message = "Your application description page.";
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+
+            MdText = dto.MdText;
+
+            return Page();
         }
+    }
+
+    public class Dto
+    {
+        public string MdText { get; set; }
     }
 }

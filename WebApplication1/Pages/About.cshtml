@@ -3,7 +3,64 @@
 @{
     ViewData["Title"] = "About";
 }
-<h2>@ViewData["Title"]</h2>
-<h3>@Model.Message</h3>
 
-<p>Use this area to provide additional information.</p>
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/medium-editor@5.23.3/dist/css/themes/beagle.min.css" integrity="sha256-k5u1uYe3RZT8MnP+a48Wl72CmkY+IgwCFQ2gD5d3Y28=" crossorigin="anonymous">
+
+<form method="post" style="margin-top: 100px;" id="form">
+    <div class="form-group">
+        <div class="col-md-10">
+            <textarea id="editable" class="editable medium-editor-textarea"></textarea>
+            <input type="hidden" id="hid" name="mdtext"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-10">
+            <input type="button" value="submit" id="btnSubmit"/>
+        </div>
+    </div>
+</form>
+
+<br/>
+<hr/>
+
+@Html.Raw(Model.MdText)
+
+@section Scripts
+{
+    <script src="//code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script>
+
+    <script>
+
+        var editor = new MediumEditor('#editable',
+            {
+                autoLink: true,
+                buttonLabels: 'fontawesome',
+                toolbar: {
+                    buttons: [
+                        'bold', 'italic', 'underline', 'strikethrough', 'quote', 'anchor', 'justifyLeft',
+                        'justifyCenter', 'justifyRight', 'justifyFull', 'superscript', 'subscript', 'orderedlist',
+                        'unorderedlist', 'pre', 'outdent', 'indent', 'h1', 'h2', 'h3'
+                    ],
+                    static: true,
+                    sticky: true
+                },
+                paste: {
+                    cleanPastedHTML: true,
+                    cleanAttrs: ['style', 'dir'],
+                    cleanTags: ['label', 'meta'],
+                    unwrapTags: ['sub', 'sup']
+                }
+            });
+
+        $("#btnSubmit").click(function() {
+            var val = editor.getContent();
+            console.log(val);
+            $("#hid").val(val);
+            $("#form").submit();
+        });
+
+    </script>
+}
