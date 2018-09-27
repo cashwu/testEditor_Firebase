@@ -8,11 +8,11 @@ namespace WebApplication1.Pages
 {
     public class ContactModel : PageModel
     {
-        public string Message { get; set; }
+        public string Title { get; set; }
 
-        public void OnGet()
+        public void OnGet(string title)
         {
-            Message = "Your contact page.";
+            Title = title;
         }
     }
 }
