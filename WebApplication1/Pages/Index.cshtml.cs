@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -69,6 +68,8 @@ namespace WebApplication1.Pages
 
         public async Task<IActionResult> OnPostDataUpdateAsync()
         {
+            Key = "-LNNfUTWxJF-Iuq8_Iqv";
+
             var auth = new FirebaseAuthProvider(new FirebaseConfig("AIzaSyBDbJVPbvfQRe6IbD2K5yHSjr74_YbSJs8"));
             var a = await auth.SignInWithEmailAndPasswordAsync("cash@cashwu.com", "E0F31815-1D25-4D98-80C4-629332F1B8F6");
 
@@ -78,10 +79,11 @@ namespace WebApplication1.Pages
             });
 
             await firebaseClient.Child("data")
-                                .PutAsync(new Data
+                                .Child(Key)
+                                .PutAsync(new
                                 {
-                                    Name = "T2",
-                                    Url = "url2"
+                                    Name = "T3",
+                                    Url = "url3"
                                 });
 
             return Page();
